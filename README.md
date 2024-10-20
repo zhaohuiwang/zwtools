@@ -138,14 +138,14 @@ Follow the <a href=[Poetrydoc-url]>Installation Guide</a> to install Poetry. I a
 
 _Below is an example of how you can use the tools to boost your project development._
 
-#### 1. Use the `Makefile_init_pyproject` to initiate your python project, the resulting project directory tree is on the left and the repository directory tree (ignoring .venv) on the right.
+#### 1. Use the [`Makefile_init_pyproject`](https://github.com/zhaohuiwang/zwtools/blob/main/toolbox/Makefile_init_pyproject) to initiate your python project, the resulting project directory tree is on the left and the repository directory tree (ignoring .venv) on the right.
 <p align="center">
   <href="https://github.com/zhaohuiwang/zwtools"><img src=".images/demo-project-tree1.png" alt="Project Directory Tree 1" width="300" height="300">
 &nbsp; &nbsp; &nbsp; 
   <href="https://github.com/zhaohuiwang/zwtools"><img src=".images/demo-project-tree2.png" alt="Project Directory Tree 2" width="300" height="150">
 </p>
 
-  1. Copy `Makefile_init_pyproject` to your project directory.
+  1. Copy [`Makefile_init_pyproject`](https://github.com/zhaohuiwang/zwtools/tree/main/toolbox) to your project directory.
   2. Come up a project repository name, for example "demo-project".
   3. ```sh
      make --file=Makefile_init_pyproject project-name="demo-project" init-project
@@ -163,7 +163,7 @@ _Below is an example of how you can use the tools to boost your project developm
 - [ ] Othere Support
     - [ ] A
     - [ ] B
-
+See the [open issues](https://github.com/zhaohuiwang/zwtools/issues) for a full list of proposed features (and known issues).
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -195,7 +195,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See [`LICENSE.txt`][license-url]for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
