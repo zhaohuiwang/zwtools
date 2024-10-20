@@ -1,0 +1,65 @@
+
+.ONESHELL:
+## with .ONESHELL: the lines in the recipe will be passed to a single invocation of the shell. The following PYTHON and PIP variables ensure 
+
+# put this python-project-template directory to the same level or your project, execute this following command
+# make --file=Makefile_init_pyproject project-name="demo-project" init-project
+
+# afterwards you may cd project-name, and start to add dependencies.
+
+# in shell predefine the project-name variable or pass as argument as
+# notice the variable name with hyphen or underscore
+# make project-name="demo-project" init-project # YES, preferree
+# make project_name="demo-project" init-project # YES, name need to be updated
+# project-name="demo-project" make init-project # NO
+# project_name="demo-project" make init-project	# YES, name need to be updated
+
+PROJECTNAME = $(project-name) 
+
+USERNAME = $(shell whoami)
+PWD = $(shell pwd)
+
+IMAGE = $(USERNAME)/$(PROJECTNAME)
+
+##################
+# Setup #
+##################
+
+.PHONY: check-poetry
+check-poetry: ## tab indentation causes problem here
+ifeq ($(shell which poetry), )
+	$(error "Can't find poetry on the PATH. Please run 'make install-poetry' or update PATH")
+else
+	@poetry --version
+	@echo $(USERNAME) is initializing $(PROJECTNAME) project in $(PROJECTNAME) directory.
+endif
+
+
+.PHONY: install-poetry
+install-poetry: ## Install poetry.
+	@curl -sSL https://install.python-poetry.org | python3 -
+
+.PHONY: init-project
+init-project:  check-poetry
+## project dorectory -- parent dir.
+	@mkdir $(PROJECTNAME) && cd $(PROJECTNAME)
+## now create repository/package directory -- child
+	@poetry new $(PROJECTNAME) --src --name $(PROJECTNAME)
+# create another docs dir. to save documents --child
+	@mkdir docs && cp ../Makefile_init_pyproject docs/
+	@mkdir notebooks data 
+	@touch README.md
+# go to repository dir and start to add dependencies	
+	@cd $(PROJECTNAME)
+# poetry.toml file are not suggested to be checked into your respository since it may contain use-specific or sensitive information. live in the parent dir.
+	@poetry config virtualenvs.in-project true --local
+	@touch ../.gitignore
+	@echo ${PROJECTNAME}/poetry.lock | tr -d ' ' >> ../.gitignore
+	@echo $(PROJECTNAME)/poetry.toml | tr -d ' ' >> ../.gitignore
+	@echo "notebooks/\ndata/" >> ../.gitignore
+# echo "$string" | tr -d '[:space:]'  removes all white spaces
+	@echo .venv >> ../.gitignore
+	@poetry add ipykernel pytest --group test
+
+
+
