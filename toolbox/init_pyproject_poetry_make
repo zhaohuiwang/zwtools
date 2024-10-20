@@ -46,7 +46,7 @@ init-project:  check-poetry
 # create the commom dir and files. The -p option (parent) allow you to create a directory hierarchy in one step. '.github/workflows/' for YAML (.yml) config files
 	@mkdir notebooks -p data/input data/.images .github/workflows
 	@touch README.md LICENSE.txt .CHANGELOG.md
-	@mkdir docs && cp ../Makefile_init_pyproject docs/
+	@mkdir docs && cp ../init_pyproject_poetry_make docs/
 
 # initiate gitignore file
 	@cd $(PROJECTNAME)
@@ -62,6 +62,3 @@ init-project:  check-poetry
 
 # initiate the venv with common packages
 	@poetry add ipykernel pytest --group test
-
-
-
