@@ -140,9 +140,9 @@ _Below is an example of how you can use the tools to boost your project developm
 
 #### 1. Use the `Makefile_init_pyproject` to initiate your python project, the resulting project directory tree is on the left and the repository directory tree (ignoring .venv) on the right.
 <p align="center">
-  <href="https://github.com/zhaohuiwang/zwtools"><img src=".images/demo-project-tree1.png" alt="Project Directory Tree 1" width="400" height="400">
+  <href="https://github.com/zhaohuiwang/zwtools"><img src=".images/demo-project-tree1.png" alt="Project Directory Tree 1" width="200" height="200">
 &nbsp; &nbsp; &nbsp; 
-  <href="https://github.com/zhaohuiwang/zwtools"><img src=".images/demo-project-tree2.png" alt="Project Directory Tree 2" width="400" height="200">
+  <href="https://github.com/zhaohuiwang/zwtools"><img src=".images/demo-project-tree2.png" alt="Project Directory Tree 2" width="200" height="100">
 </p>
 
   1. Copy `Makefile_init_pyproject` to your project directory.
