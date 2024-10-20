@@ -22,8 +22,12 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
-
+<!-- PROJECT LOGO -->
 <br />
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src=".images/logo.jpg" alt="Logo" width="80" height="80">
+  </a>
   <h2 align="center">zwtools</h2>
   <p align="center">
     Some awsome tools to jumpstart your projects!
@@ -134,8 +138,13 @@ Follow the <a href=[Poetrydoc-url]>Installation Guide</a> to install Poetry. I a
 
 _Below is an example of how you can use the tools to boost your project development._
 
-#### 1. Use the `Makefile_init_pyproject` to initiate your python project, with the following project directory tree
-<a href="https://github.com/zhaohuiwang/zwtools"><img src=".images/demo-project-tree.png" alt="Project Directory Tree" width="400" height="400"> </a>
+#### 1. Use the `Makefile_init_pyproject` to initiate your python project, the resulting project directory tree is on the left and the repository directory tree (ignoring .venv) on the right.
+<p align="center">
+  <a href="https://github.com/zhaohuiwang/zwtools"><img src=".images/demo-project-tree1.png" alt="Project Directory Tree 1" width="400" height="400"> </a>
+&nbsp; &nbsp; &nbsp; 
+  <a href="https://github.com/zhaohuiwang/zwtools"><img src=".images/demo-project-tree2.png" alt="Project Directory Tree 2" width="400" height="400"> </a>
+</p>
+
   1. Copy `Makefile_init_pyproject` to your project directory.
   2. Come up a project repository name, for example "demo-project".
   3. ```sh
