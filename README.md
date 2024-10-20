@@ -138,17 +138,17 @@ Follow the <a href=[Poetrydoc-url]>Installation Guide</a> to install Poetry. I a
 
 _Below is an example of how you can use the tools to boost your project development._
 
-#### 1. Use the [`Makefile_init_pyproject`](https://github.com/zhaohuiwang/zwtools/blob/main/toolbox/Makefile_init_pyproject) to initiate your python project, the resulting project directory tree is on the left and the repository directory tree (ignoring .venv) on the right.
+#### 1. Use the [`init_pyproject_poetry_make`](https://github.com/zhaohuiwang/zwtools/blob/main/toolbox/init_pyproject_poetry_make) to initiate your python project, the resulting project directory tree is on the left and the repository directory tree (ignoring .venv) on the right.
 <p align="center">
   <href="https://github.com/zhaohuiwang/zwtools"><img src=".images/demo-project-tree1.png" alt="Project Directory Tree 1" width="300" height="300">
 &nbsp; &nbsp; &nbsp; 
   <href="https://github.com/zhaohuiwang/zwtools"><img src=".images/demo-project-tree2.png" alt="Project Directory Tree 2" width="300" height="150">
 </p>
 
-  1. Copy [`Makefile_init_pyproject`](https://github.com/zhaohuiwang/zwtools/tree/main/toolbox) to your project directory.
+  1. Copy [`init_pyproject_poetry_make`](https://github.com/zhaohuiwang/zwtools/tree/main/toolbox) to your project directory.
   2. Come up a project repository name, for example "demo-project".
   3. ```sh
-     make --file=Makefile_init_pyproject project-name="demo-project" init-project
+     make --file=init_pyproject_poetry_make project-name="demo-project" init-project
      ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
