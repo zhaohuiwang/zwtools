@@ -151,8 +151,8 @@ _Below is an example of how you can use the tools to boost your project developm
      make --file=init_pyproject_poetry_make project-name="demo-project" init-project
      ```
   4. To create a nested shell and activate the virtual environment with `poetry shell`. `deactivate` to deactivate the virtual environment without leaving the shell, and `exit` to deactivate and exit this new shell. Alternatively, to avoid creating a new shell, you can manually activate the virtual environment by running `source $(poetry env info --path)/bin/activate`, `deactivate` to deactivate the venv. See [Poetry: Activating the virtual environment](https://python-poetry.org/docs/basic-usage/) for details. If you are using VS Code, see [Python environments in VS Code](https://code.visualstudio.com/docs/python/environments).
-#### <del B. Python `venv` module: Use the [`init_pyproject_pythonvenv`](https://github.com/zhaohuiwang/zwtools/blob/main/toolbox/init-pyproject-pythonvenv) to initiate your python project (not active)<\del>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+#### ~~ B. Python `venv` module: Use the [`init_pyproject_pythonvenv`](https://github.com/zhaohuiwang/zwtools/blob/main/toolbox/init-pyproject-pythonvenv) to initiate your python project (not active)~~
+<p align="right">(<a href="#readme-top">back to top</a>)
 
 
 <!-- ROADMAP -->
