@@ -138,7 +138,7 @@ Follow the <a href=[Poetrydoc-url]>Installation Guide</a> to install Poetry. I a
 
 _Below is an example of how you can use the tools to boost your project development._
 
-#### 1. Use the [`init_pyproject_poetry_make`](https://github.com/zhaohuiwang/zwtools/blob/main/toolbox/init_pyproject_poetry_make) to initiate your python project, the resulting project directory tree is on the left and the repository directory tree (ignoring .venv) on the right.
+#### A. `Poetry` module: Use the [`init_pyproject_poetry_make`](https://github.com/zhaohuiwang/zwtools/blob/main/toolbox/init_pyproject_poetry_make) to initiate your python project, the resulting project directory tree is on the left and the repository directory tree (ignoring .venv) on the right.
 <p align="center">
   <href="https://github.com/zhaohuiwang/zwtools"><img src=".images/demo-project-tree1.png" alt="Project Directory Tree 1" width="300" height="300">
 &nbsp; &nbsp; &nbsp; 
@@ -150,6 +150,8 @@ _Below is an example of how you can use the tools to boost your project developm
   3. ```sh
      make --file=init_pyproject_poetry_make project-name="demo-project" init-project
      ```
+  4. To create a nested shell and activate the virtual environment with `poetry shell`. `deactivate` to deactivate the virtual environment without leaving the shell, and `exit` to deactivate and exit this new shell. Alternatively, to avoid creating a new shell, you can manually activate the virtual environment by running `source $(poetry env info --path)/bin/activate`, `deactivate` to deactivate the venv. See [Poetry: Activating the virtual environment] (https://python-poetry.org/docs/basic-usage/) for details. If you are using VS Code, see [Python environments in VS Code](https://code.visualstudio.com/docs/python/environments).
+#### _B. Python `venv` module: Use the [`init-pyproject-pythonvenv`](https://github.com/zhaohuiwang/zwtools/blob/main/toolbox/init-pyproject-pythonvenv) to initiate your python project (not active)_
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 

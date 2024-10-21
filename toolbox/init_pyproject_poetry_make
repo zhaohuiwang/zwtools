@@ -1,8 +1,8 @@
 .ONESHELL:
 ## with .ONESHELL: the lines in the recipe will be passed to a single invocation of the shell. The following PYTHON and PIP variables ensure 
 
-# put this python-project-template directory to the same level or your project, execute this following command
-# make --file=Makefile_init_pyproject project-name="demo-project" init-project
+# put this file in you developemnt folder (parent of your project directory), execute the following command, after replacing "demo-project" with your desired project name. 
+# make --file=init_pyproject_poetry_make project-name="demo-project" init-project
 
 # afterwards you may cd project-name, and start to add dependencies.
 
