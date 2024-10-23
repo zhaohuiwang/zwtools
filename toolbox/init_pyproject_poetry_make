@@ -44,7 +44,7 @@ install-poetry:
 init-project:  check-poetry
 ## create and cd the project directory -- parent dir.
 	@mkdir $(PROJECTNAME)
-	@chmod 755 $(PROJECTNAME)   ## essential for macOS
+	@chmod -R 777 $(PROJECTNAME)   ## essential for macOS
 	@cd $(PROJECTNAME)
 
 ## now initiate the repository/package wiht poetry
