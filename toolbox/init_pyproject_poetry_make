@@ -60,7 +60,7 @@ init-project:  check-poetry
 	@touch ../.gitignore
 	@echo ${PROJECTNAME}/poetry.lock | tr -d ' ' >> ../.gitignore
 	@echo $(PROJECTNAME)/poetry.toml | tr -d ' ' >> ../.gitignore
-	@echo ".CHANGELOG.md/\notebooks/\ndata/" >> ../.gitignore
+	@echo ".CHANGELOG.md\nnotebooks/\ndata/" >> ../.gitignore
 # echo "$string" | tr -d '[:space:]'  removes all white spaces
 	@echo .venv >> ../.gitignore
 
