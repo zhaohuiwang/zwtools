@@ -145,11 +145,21 @@ _Below is an example of how you can use the tools to boost your project developm
 </p>
 
   1. Copy [`init_pyproject_poetry_make`](https://github.com/zhaohuiwang/zwtools/tree/main/toolbox) to your project directory.
-  2. Come up a project repository name, for example "demo-project".
-  3. ```sh
-     make --file=init_pyproject_poetry_make project-name="demo-project" init-project
-     ```
-  4. To create a nested shell and activate the virtual environment with `poetry shell`. `deactivate` to deactivate the virtual environment without leaving the shell, and `exit` to deactivate and exit this new shell. Alternatively, to avoid creating a new shell, you can manually activate the virtual environment by running `source $(poetry env info --path)/bin/activate`, `deactivate` to deactivate the venv. See [Poetry: Activating the virtual environment](https://python-poetry.org/docs/basic-usage/) for details. If you are using VS Code, see [Python environments in VS Code](https://code.visualstudio.com/docs/python/environments). To run in an interactive mode, first execute `% poetry env info --path` to reveal and copy the path > go to the lower right corner and click on "Select Interpreter" > click the "Enter interpreter path ..." option in the pop up window on the top, paste the copied path, and click Enter. :rocket:
+  2. Come up a project repository name, for example "your-project-name" then execute the following code.
+```sh
+     make --file=init_pyproject_poetry_make project-name="your-project-name" init-project
+```
+  3. Setup remote github repository: Create a new repository with the same name as the `project-name`, leave README, .gitignore and license unchecked. On the Quick Setup page there are instructions on how to link the new created remote repository and the SSH URL. 
+  4. Now come back to the local project directory and execute the following to link your local directory to the remote repository
+```sh
+      git init
+      git remote add origin git@github.com:zhaohuiwang/<your-project-name>.git
+      git push -u origin main
+      git add .
+      git commit -m 'first commit'
+      git push -u origin main
+```
+  5. To create a nested shell and activate the virtual environment with `poetry shell`. `deactivate` to deactivate the virtual environment without leaving the shell, and `exit` to deactivate and exit this new shell. Alternatively, to avoid creating a new shell, you can manually activate the virtual environment by running `source $(poetry env info --path)/bin/activate`, `deactivate` to deactivate the venv. See [Poetry: Activating the virtual environment](https://python-poetry.org/docs/basic-usage/) for details. If you are using VS Code, see [Python environments in VS Code](https://code.visualstudio.com/docs/python/environments). To run in an interactive mode, first execute `% poetry env info --path` to reveal and copy the path > go to the lower right corner and click on "Select Interpreter" > click the "Enter interpreter path ..." option in the pop up window on the top, paste the copied path, and click Enter. :rocket:
 #### <del>B. Python `venv` module: Use the [`init_pyproject_pythonvenv`](https://github.com/zhaohuiwang/zwtools/blob/main/toolbox/init-pyproject-pythonvenv) to initiate your python project (documentation only, not suggested)</del>
 <p align="right">(<a href="#readme-top">back to top</a>)
 
