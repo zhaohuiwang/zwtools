@@ -1,0 +1,62 @@
+.ONESHELL:
+.SHELLFLAGS += -e
+
+## with .ONESHELL: the lines in the recipe will be passed to a single invocation of the shell. instead of && \ at the end of each statement line within a target section. Use $$ instead of ; to chain the commands.
+
+# put this file in you developemnt folder (parent of your project directory), execute the following command, after replacing "demo-project" with your desired project name. 
+# make --file=init_pyproject_uv_make projectname="demo-project" init-project
+
+# afterwards you may cd project-name, and start to add dependencies.
+
+
+PROJECTNAME := $(projectname) 
+USERNAME := $(shell whoami)
+PWD := $(shell pwd)
+
+# USERNAME != whoami # shell assignment using != works in Ubuntu bash
+##################
+## Setup ##
+##################
+
+.PHONY: check-uv
+check-uv:
+ifeq ($(shell which uv), )
+	$(error "Can't find uv on the PATH. Please run 'make install-uv' or update PATH")
+else
+	@uv --version
+	@echo $(USERNAME) is initiating the $(PROJECTNAME) project in $(PWD).
+endif
+
+
+.PHONY: install-uv
+install-uv:
+	@curl -LsSf https://astral.sh/uv/install.sh | sh
+
+.PHONY: init-project
+init-project:  check-uv
+## create and cd the project directory -- parent dir.
+	@mkdir $(PROJECTNAME)
+	@chmod -R 777 $(PROJECTNAME)   ## essential for macOS
+	@cd $(PROJECTNAME)
+
+## now initiate the repository/package with uv
+	@uv init --lib $(PROJECTNAME)
+
+# create the commom dir and files. The -p option (parent) allow you to create a directory hierarchy in one step. '.github/workflows/' for YAML (.yml) config files
+	@mkdir -p notebooks data/input data/.images .github/workflows
+	@touch README.md LICENSE.txt .CHANGELOG.md
+	@mkdir docs && cp ../init_pyproject_uv_make docs/
+
+# initiate gitignore file
+	@cd $(PROJECTNAME)
+	@touch ../.gitignore
+	@echo ${PROJECTNAME}/uv.lock | tr -d ' ' >> ../.gitignore
+	@echo ".CHANGELOG.md\nnotebooks/\ndata/" >> ../.gitignore
+# echo "$string" | tr -d '[:space:]'  removes all white spaces
+	@echo .venv >> ../.gitignore
+
+# force a project to be built and installed into the project environment.
+#	default: tool.uv.package = true 
+
+# initiate the venv with common packages
+	@uv add ipykernel pytest --group test
