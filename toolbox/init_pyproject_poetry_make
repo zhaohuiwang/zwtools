@@ -15,10 +15,7 @@
 # project-name="demo-project" make init-project # NO
 # project_name="demo-project" make init-project	# YES, name need to be updated
 
-#  PROJECTNAME := $(projectname) 
-
-PROJECTNAME := $(shell echo $$projectname)
-
+PROJECTNAME := $(projectname) 
 USERNAME := $(shell whoami)
 PWD := $(shell pwd)
 # USERNAME != whoami # shell assignment using != works in Ubuntu bash
@@ -47,7 +44,7 @@ init-project:  check-poetry
 	@chmod -R 777 $(PROJECTNAME)   ## essential for macOS
 	@cd $(PROJECTNAME)
 
-## now initiate the repository/package wiht poetry
+## now initiate the repository/package with poetry
 	@poetry new $(PROJECTNAME) --src --name $(PROJECTNAME)
 
 # create the commom dir and files. The -p option (parent) allow you to create a directory hierarchy in one step. '.github/workflows/' for YAML (.yml) config files
