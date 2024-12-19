@@ -65,4 +65,5 @@ init-project:  check-poetry
 	@poetry config virtualenvs.in-project true --local
 
 # initiate the venv with common packages
-	@poetry add ipykernel pytest --group test
+	@poetry add ipykernel pandas numpy matplotlib pytest --group test
+
