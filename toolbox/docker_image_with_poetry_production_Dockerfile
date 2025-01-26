@@ -1,0 +1,151 @@
+
+# ref: https://amplify.security/blog/how-to-build-production-ready-docker-images-with-python-poetry-and-fastapi
+
+# docker-compose.yml
+---
+version: "3.3"
+
+services:
+  demo:
+    build:
+      context: .
+      args:
+        INSTALL_DEBUGPY: "True"
+    ports:
+      - "8000:8000"
+      - "5678:5678"
+    volumes:
+      - ./server.py:/home/demo/app/server.py # this will allow hot reload when file changes
+    environment:
+      UVICORN_RELOAD: "True"
+    entrypoint:
+      - "python"
+      - "-m"
+      - "debugpy"
+      - "--listen"
+      - "0.0.0.0:5678"
+      - "server.py"
+
+
+# Dockerfile
+FROM python:3.12-alpine AS builder
+
+ARG INSTALL_DEBUGPY
+
+# Set environment variables
+ENV POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_IN_PROJECT=1 \
+    POETRY_VIRTUALENVS_CREATE=1 \
+    POETRY_CACHE_DIR=/tmp/.poetry
+
+# Install poetry
+RUN pip install poetry==1.8.3
+
+# Add demo user
+RUN adduser -D demo && \
+    mkdir -p /home/demo/app && \
+    chown demo:demo /home/demo/app
+WORKDIR /home/demo/app
+USER demo
+
+# python project configuration file and poetry.lock file
+COPY pyproject.toml poetry.lock ./
+
+# Install dependencies
+RUN if [[ -z "${INSTALL_DEBUGPY}" ]]; then \
+        poetry install --no-root; \
+    else \
+        poetry install --no-root --with debug; \
+    fi
+
+FROM python:3.12-alpine AS runtime
+
+# Expose fastapi port
+EXPOSE 8000
+
+# Add demo user
+RUN adduser -D demo && \
+    mkdir -p /home/demo/app && \
+    chown demo:demo /home/demo/app
+WORKDIR /home/demo/app
+USER demo
+
+# Set environment variables
+ENV VIRTUAL_ENV=.venv \
+    PATH=/home/demo/app/.venv/bin:$PATH
+
+# Copy virtual environment
+COPY --from=builder /home/demo/app/${VIRTUAL_ENV} ${VIRTUAL_ENV}
+
+# Copy server.py
+COPY server.py server.py
+
+# Set entrypoint
+ENTRYPOINT ["python", "server.py"]
+
+
+
+# pyproject.toml
+[tool.poetry]
+name = "demo"
+version = "0.1.0"
+description = ""
+authors = ["M Fox <mfox@amplify.security>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+uvicorn = "^0.29.0"
+fastapi = "^0.111.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+# server.py
+import os
+import uvicorn
+from fastapi import FastAPI
+
+UVICORN_RELOAD = os.getenv("UVICORN_RELOAD", "False").lower() in ("true", "1")
+UVICORN_HOST = os.getenv("UVICORN_HOST", "0.0.0.0")
+UVICORN_PORT = int(os.getenv("UVICORN_PORT", "8000"))
+app = FastAPI()
+
+@app.get("/ping")
+def ping():
+    return ({"ping": "pong"})
+
+if __name__ == "__main__":
+    uvicorn.run("server:app", host=UVICORN_HOST, port=UVICORN_PORT, reload=UVICORN_RELOAD)
+
+
+
+# To attach the debugger to our container running with Docker Compose, create a VS Code launch configuration (.vscode/launch.json) in the root of your project.
+
+// .vscode/launch.json
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [ 
+        {
+            "name": "Python Debugger: Remote Attach",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "."
+                }
+            ],
+        }
+    ]
+}
