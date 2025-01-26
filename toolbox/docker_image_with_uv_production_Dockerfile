@@ -21,6 +21,7 @@ apt-get install -qyy \
     python3-setuptools \
     python3.12-dev
 EOT
+# EOT is a delimiter that marks the beginning and end of the multi-line text, any multicharacter word that won't appear in the body works. << is the redirection operator for forwarding a HereDoc to the command. 
 
 # Security-conscious organizations should package/review uv themselves.
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
