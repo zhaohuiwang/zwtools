@@ -59,4 +59,5 @@ init-project:  check-uv
 #	default: tool.uv.package = true 
 
 # initiate the venv with common packages
-	@uv add ipykernel pytest --group test
+	@uv add ipykernel 
+# pytest --group test
