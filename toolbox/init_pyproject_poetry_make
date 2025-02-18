@@ -26,7 +26,7 @@ PWD := $(shell pwd)
 .PHONY: check-poetry
 check-poetry:
 ifeq ($(shell which poetry), )
-	$(error "Can't find poetry on the PATH. Please run 'make install-poetry' or update PATH")
+	$(error "Can't find poetry on the PATH. Please run 'make --file=init_pyproject_poetry_make install-poetry' or update PATH")
 else
 	@poetry --version
 	@echo $(USERNAME) is initiating the $(PROJECTNAME) project in $(PWD).
