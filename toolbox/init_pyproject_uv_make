@@ -21,7 +21,7 @@ PWD := $(shell pwd)
 .PHONY: check-uv
 check-uv:
 ifeq ($(shell which uv), )
-	$(error "Can't find uv on the PATH. Please run 'make install-uv' or update PATH")
+	$(error "Can't find uv on the PATH. Please run 'make --file=init_pyproject_uv_make install-uv' or update PATH")
 else
 	@uv --version
 	@echo $(USERNAME) is initiating the $(PROJECTNAME) project in $(PWD).
